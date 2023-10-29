@@ -2,7 +2,7 @@ function drawSnakesText(startX, startY, size, spacing) {
   c.beginPath();
   //S
   c.moveTo(startX, startY);
-  c.lineTo(startX-size, startY)
+    c.lineTo(startX - size, startY);
   c.lineTo(startX-size, startY+size/2);
   c.lineTo(startX, startY+size/2);
   c.lineTo(startX, startY+size);
@@ -86,3 +86,26 @@ c.strokeStyle = "rgba(220, 50, 60, 1)";
 drawSnakesText(150, 120, 20, 5);
 c.strokeStyle = "rgba(100, 10, 10, 1)";
 drawSnakesText(100, 340, 80, 55);
+
+
+
+//Body
+ctx.moveTo(this.xPos, this.yPos);
+ctx.lineTo(this.xPos + this.length - 3, this.yPos);
+ctx.arc(this.xPos + this.length - 3, this.yPos + 3, 3, -1, 0.3, false);
+ctx.lineTo(this.xPos + this.length, this.yPos + 8);
+//Tongue
+ctx.lineTo(this.xPos + this.length + 12, this.yPos + 6);
+ctx.lineTo(this.xPos + this.length + 7, this.yPos + 10);
+ctx.lineTo(this.xPos + this.length + 12, this.yPos + 14);
+ctx.lineTo(this.xPos + this.length, this.yPos + 12);
+//Body
+ctx.lineTo(this.xPos + this.length, this.yPos + 20 - 3);
+ctx.arc(this.xPos + this.length - 3, this.yPos + 20 - 3, 3, 1, 1.3, false);
+ctx.lineTo(this.xPos, this.yPos + 20);
+ctx.arc(this.xPos, this.yPos + 10, 10, 1.6, 4.7, false);
+//Eyes
+ctx.moveTo(this.xPos + this.length - 8, this.yPos + 6);
+ctx.arc(this.xPos + this.length - 10, this.yPos + 6, 2, Math.PI * 2, false);
+ctx.moveTo(this.xPos + this.length - 8, this.yPos + 14);
+ctx.arc(this.xPos + this.length - 10, this.yPos + 14, 2, Math.PI * 2, false);
