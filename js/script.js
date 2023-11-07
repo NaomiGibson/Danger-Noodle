@@ -6,6 +6,9 @@ var isInPlay = false;
 var upKeyPressed = false;
 var downKeyPressed = false;
 var frame = 0;
+var nextSpawnFrame = 0;
+const paths = [3, 27, 53, 77, 103, 127, 153, 177, 203, 227, 253, 277, 303, 327, 353, 377, 403, 427] //y positions of possible paths for snakes
+const pathsInUse = []
 
 document.addEventListener('keydown', (e) => {
     if (e.code === "ArrowUp") {
@@ -29,26 +32,29 @@ function getRandomInt(min, max) {
 }
 
 function startGame() {
-    //noodle = new Snake(-50, 210, 3, 50);
-    //noodle1 = new Snake(-110, 69, 2, 50);
-    //noodle2 = new Snake(-350, 400, 3, 50);
-    //noodle3 = new Snake(-390, 320, 2, 50);
-    //noodle4 = new Snake(-470, 425, 4, 50);
+
     myGameArea = new GameArea();
     playerOne = new Player(700, 200, "#874356");
     isInPlay = true;
     interval = setInterval(updateGame, 10);
-    myGameArea.components.push(playerOne); //, noodle, noodle1, noodle2, noodle3, noodle4
+    myGameArea.components.push(playerOne); 
+    for (i = 0; i < paths.length; i++) {
+        //console.log(paths[i]);
+        newestNoodle = new Snake(-50, i, 50);
+        myGameArea.components.push(newestNoodle); 
+    }
     myGameArea.start();
 }
 function spawnNewSnake() {
-    var y = getRandomInt(15, myGameArea.canvas.height - 15);
-    var speed = 2;
-    var length = 50;
-    myGameArea.components.push(new Snake(-length, y, speed, length));
+    var y = getRandomInt(getRandomInt(0, paths.length));
+    var length = getRandomInt(30, 150);
+    myGameArea.components.push(new Snake(-length, y, length));
 }
 function stopComponent(component) {
     component.isInPlay = false;
+}
+function removeComponent(component) {
+    myGameArea.components.indexOf(component);
 }
 function loseGame() {
     stopGame();
@@ -64,16 +70,13 @@ function stopGame() {
 }
 function updateGame() {
     if (isInPlay) {
-        var nextSpawnFrame = 0
         if (frame > nextSpawnFrame) {
             spawnNewSnake();
-            nextSpawnFrame += getRandomInt(1, 11);
+            nextSpawnFrame += getRandomInt(10, 100);
         }
-        myGameArea.update();
         frame ++;
+        myGameArea.update();
     }
 }
-
-
 
 startGame();

@@ -9,11 +9,11 @@ class Volume {
     }
 
     checkObjectOverlap(other) {
-        console.log("object checking");
+        //console.log("object checking");
         this.overlapFound = false
         if (other == playerOne) {
             other.volumes.forEach((volume) => this.checkVolumeOverlap(volume));
-            console.log("object overlap", this.overlapFound);
+            //console.log("object overlap", this.overlapFound);
             return this.overlapFound;
         }
         else {
@@ -22,9 +22,9 @@ class Volume {
     }
 
     checkVolumeOverlap(other) {
-        console.log("volume checking");
-        console.log(this.left, this.top, this.right, this.bottom);
-        console.log(other.left, other.top, other.right, other.bottom)
+        //console.log("volume checking");
+        //console.log(this.left, this.top, this.right, this.bottom);
+        //console.log(other.left, other.top, other.right, other.bottom)
         //if (other == Volume) {
         if (this.left < other.right &&
             this.right > other.left &&
@@ -32,7 +32,7 @@ class Volume {
             this.bottom > other.top) {
             this.overlapFound = true;
             }
-        console.log("volume overlap", this.overlapFound);
+        //console.log("volume overlap", this.overlapFound);
         //}
         //else {
             //console.log("non-volume object in volumes array")

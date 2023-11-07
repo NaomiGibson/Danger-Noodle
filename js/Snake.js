@@ -1,12 +1,15 @@
 class Snake extends Component {
-    constructor(x, y, speed, length) {
-        super(x, y, speed, "#874356")
-        this.length = length
-        this.volumes = [new Volume(x-5, y, x + this.length, y + 20), new Volume(x + this.length, y + 5, x + this.length + 12, y + 14)];
+    constructor(x, path, length) {
+        super(x, paths[path], 3, "#874356");
+        this.path = path
+        this.y = paths[path];
+        this.length = length;
+        this.volumes = [new Volume(x-5, this.y, x + this.length, this.y + 20), new Volume(x + this.length, this.y + 5, x + this.length + 12, this.y + 14)];
     }
     start(ctx) {
         super.start();
         this.draw(ctx);
+        pathsInUse[this.path] = true
     }
     update(ctx) {
         if (this.isInPlay) {
@@ -15,6 +18,9 @@ class Snake extends Component {
             this.draw(ctx);
             if (this.checkOverlap(playerOne)) {
                 this.onBeginOverlapPlayer();
+            }
+            if (this.xPos > myGameArea.canvas.width) {
+                removeComponent(this);
             }
         }
     }

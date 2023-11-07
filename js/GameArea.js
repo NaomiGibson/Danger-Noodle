@@ -28,7 +28,7 @@ class GameArea {
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "30px Georgia";
         this.ctx.fillStyle = "#874356";
-        this.ctx.fillText("You CRETIN! You BAFFOON! You BLITHERING IDIOT!", 15, 150);
+        this.ctx.fillText("You CRETIN! You BUFFOON! You BLITHERING IDIOT!", 15, 150);
         this.ctx.font = "60px Georgia";
         this.ctx.fillText("You hit a Danger Noodle", 60, 350);
     }

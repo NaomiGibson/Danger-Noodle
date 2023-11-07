@@ -12,7 +12,11 @@ class Component {
     start() {
         console.log(this.constructor.name, "starting");
     }
+    onRemoveComponent() {
+        
+    }
     update() {
 
     }
+    
 }
