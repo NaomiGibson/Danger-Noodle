@@ -1,15 +1,16 @@
 class Snake extends Component {
     constructor(x, path, length) {
-        super(x, paths[path], 3, "#874356");
+        super(x, myGameArea.paths.usablePaths[path], 3, "#874356");
         this.path = path
-        this.y = paths[path];
+        this.y = myGameArea.paths.usablePaths[path];
         this.length = length;
         this.volumes = [new Volume(x-5, this.y, x + this.length, this.y + 20), new Volume(x + this.length, this.y + 5, x + this.length + 12, this.y + 14)];
     }
     start(ctx) {
         super.start();
         this.draw(ctx);
-        pathsInUse[this.path] = true
+        myGameArea.paths.removePath(this.path);
+        console.log(this.path);
     }
     update(ctx) {
         if (this.isInPlay) {
@@ -21,6 +22,9 @@ class Snake extends Component {
             }
             if (this.xPos > myGameArea.canvas.width) {
                 removeComponent(this);
+            }
+            if (this.xPos > this.length + 5) {
+                myGameArea.paths.addPath(this.path);
             }
         }
     }

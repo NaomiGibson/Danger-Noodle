@@ -7,10 +7,10 @@ class Component {
         this.isInPlay = true;
         this.color = color;
         this.volumes = [];
-        console.log(this.constructor.name, "component constructing");
+        //console.log(this.constructor.name, "component constructing");
     }
     start() {
-        console.log(this.constructor.name, "starting");
+        //console.log(this.constructor.name, "starting");
     }
     onRemoveComponent() {
         

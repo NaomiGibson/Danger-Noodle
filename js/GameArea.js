@@ -6,9 +6,16 @@ class GameArea {
         this.canvas.height = 450;
         this.ctx = this.canvas.getContext("2d");
         this.components = [];
+        this.paths = new PathSet();
     }
     start() {
         //console.log(this.components);
+        
+        for (var i = 0; i <= (this.canvas.height - 23) / 23; i++) {
+            this.paths.addPath(i);
+            console.log(i)
+        }
+        console.log(this.paths.usablePaths);
         this.components.forEach((element) => element.start(this.ctx));
     }
     clear() {

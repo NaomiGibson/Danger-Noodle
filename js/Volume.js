@@ -25,7 +25,6 @@ class Volume {
         //console.log("volume checking");
         //console.log(this.left, this.top, this.right, this.bottom);
         //console.log(other.left, other.top, other.right, other.bottom)
-        //if (other == Volume) {
         if (this.left < other.right &&
             this.right > other.left &&
             this.top < other.bottom &&
@@ -33,9 +32,5 @@ class Volume {
             this.overlapFound = true;
             }
         //console.log("volume overlap", this.overlapFound);
-        //}
-        //else {
-            //console.log("non-volume object in volumes array")
-        //}
     }
 }

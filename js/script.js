@@ -1,14 +1,12 @@
 //Init Canvas
 
-var interval;
 var myGameArea;
 var isInPlay = false;
-var upKeyPressed = false;
-var downKeyPressed = false;
+var interval;
 var frame = 0;
 var nextSpawnFrame = 0;
-const paths = [3, 27, 53, 77, 103, 127, 153, 177, 203, 227, 253, 277, 303, 327, 353, 377, 403, 427] //y positions of possible paths for snakes
-const pathsInUse = []
+var upKeyPressed = false;
+var downKeyPressed = false;
 
 document.addEventListener('keydown', (e) => {
     if (e.code === "ArrowUp") {
@@ -32,23 +30,19 @@ function getRandomInt(min, max) {
 }
 
 function startGame() {
-
     myGameArea = new GameArea();
     playerOne = new Player(700, 200, "#874356");
     isInPlay = true;
     interval = setInterval(updateGame, 10);
     myGameArea.components.push(playerOne); 
-    for (i = 0; i < paths.length; i++) {
-        //console.log(paths[i]);
-        newestNoodle = new Snake(-50, i, 50);
-        myGameArea.components.push(newestNoodle); 
-    }
     myGameArea.start();
 }
 function spawnNewSnake() {
-    var y = getRandomInt(getRandomInt(0, paths.length));
+    var y = getRandomInt(getRandomInt(0, myGameArea.paths.usablePaths.length));
     var length = getRandomInt(30, 150);
-    myGameArea.components.push(new Snake(-length, y, length));
+    thisSnake = new Snake(-length, y, length);
+    thisSnake.start(myGameArea.ctx);
+    myGameArea.components.push(thisSnake);
 }
 function stopComponent(component) {
     component.isInPlay = false;
@@ -73,6 +67,7 @@ function updateGame() {
         if (frame > nextSpawnFrame) {
             spawnNewSnake();
             nextSpawnFrame += getRandomInt(10, 100);
+            //console.log("Snake spawn frame")
         }
         frame ++;
         myGameArea.update();
